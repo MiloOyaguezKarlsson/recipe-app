@@ -1,0 +1,35 @@
+<div class="login-page">
+  <mat-card class="login-card">
+    <mat-card-title>Login</mat-card-title>
+    <form #loginForm="ngForm" (ngSubmit)="checkLogin(loginForm.value.username, loginForm.value.password)">
+      <mat-form-field>
+        <input type="text" placeholder="Enter Username" name="username" id="username" ngModel matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="password" placeholder="Enter Password" name="password" id="password" ngModel matInput>
+      </mat-form-field>
+      <br>
+      <button mat-button type="submit">Login</button>
+    </form>
+    <p *ngIf="error">{{error}}</p>
+
+    <!--registrera användare-->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Register User</mat-panel-title>
+        <mat-panel-description>Enter username and password</mat-panel-description>
+      </mat-expansion-panel-header>
+      <form #registerUserForm="ngForm" (submit)="registerUser(registerUserForm.value); registerUserForm.reset()">
+        <mat-form-field>
+          <input type="text" name="username" id="registerUsername" placeholder="Username" ngModel matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" name="password" id="registerPassword" placeholder="Password" ngModel matInput>
+        </mat-form-field>
+        <button mat-button type="submit">Register</button>
+      </form>
+    </mat-expansion-panel>
+  </mat-card>
+</div>
+

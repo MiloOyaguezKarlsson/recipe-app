@@ -1,0 +1,15 @@
+<div class="comment-section">
+  <h2>Comments</h2>
+
+  <form #commentForm="ngForm" (submit)="postComment(commentForm.value); commentForm.reset()">
+    <h3>Write a comment</h3>
+    <mat-form-field>
+      <textarea matInput name="comment" id="comment" placeholder="Comment" matTextareaAutosize ngModel></textarea>
+    </mat-form-field>
+    <button mat-button type="submit">Post comment</button>
+  </form>
+  <div class="comment" *ngFor="let comment of comments">
+    <h3>Posted by {{comment.user}} on {{comment.date}}</h3>
+    <p>{{comment.comment}}</p>
+  </div>
+</div>

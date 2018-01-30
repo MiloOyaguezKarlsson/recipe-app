@@ -1,0 +1,15 @@
+<mat-card class="recipe-card">
+  <mat-card-header>
+    <mat-card-title><h3><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></h3></mat-card-title>
+    <mat-card-subtitle>Posted by: {{recipe.user}} on {{recipe.date}} || {{recipe.upvotes}}
+      <mat-icon>thumb_up</mat-icon>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img class="recipeImg" src="{{recipe.picture}}" alt="{{recipe.name}} image" width="200">
+
+  <div class="recipe-description"><p>{{recipe.description}}</p></div>
+
+  <a mat-raised-button href="/edit/{{recipe.id}}" *ngIf="canEdit">Edit Recipe</a>
+</mat-card>
+
+

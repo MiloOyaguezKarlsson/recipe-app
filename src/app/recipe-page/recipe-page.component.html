@@ -1,0 +1,27 @@
+<p *ngIf="error">{{error}}</p>
+<div *ngIf="recipe">
+  <h2>{{recipe.name}} || {{recipe.upvotes}}
+    <button mat-icon-button (click)="upvoteRecipe()"><mat-icon>thumb_up</mat-icon></button>
+  </h2>
+  <h3>Posted by: {{recipe.user}} on {{recipe.date}}</h3>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of recipe.tags">{{tag.name}}</mat-chip>
+  </mat-chip-list>
+  <img src="{{recipe.picture}}" alt="{{recipe.name}} image" width="500">
+  <div class="description">
+    <h4>Description</h4>
+    <p>{{recipe.description}}</p>
+  </div>
+
+  <h4>Ingredients</h4>
+  <mat-list>
+    <mat-list-item *ngFor="let ingredient of recipe.ingredients">
+      {{ingredient.amount}} {{ingredient.measurement}} {{ingredient.name}}
+    </mat-list-item>
+  </mat-list>
+  <h4>Instructions</h4>
+  <p>{{recipe.instructions}}</p>
+
+  <app-comments [comments]="recipe.comments" [recipeID]="recipe.id"></app-comments>
+</div>
+

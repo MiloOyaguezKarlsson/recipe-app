@@ -1,0 +1,56 @@
+<h2>Post recipe</h2>
+<form *ngIf="loggedIn" #addGameForm="ngForm" (submit)="postRecipe(addGameForm.value); addGameForm.reset()">
+  <mat-form-field class="name"><input matInput type="text" name="name" ngModel placeholder="Title" required></mat-form-field>
+  <br>
+  <mat-form-field class="description"><textarea matInput matTextareaAutosize name="description" ngModel
+                            placeholder="Description" required></textarea></mat-form-field>
+  <br>
+  <mat-form-field class="instructions"><textarea matInput matTextareaAutosize name="instructions" ngModel
+                            placeholder="Instructions" required></textarea></mat-form-field>
+  <br>
+  <mat-form-field class="portions"><input matInput type="number" name="portions" ngModel placeholder="Portions" required>
+  </mat-form-field>
+  <br>
+  <!--lägga till ingredienser-->
+  <h4>Ingredients</h4>
+  <form #ingredientForm="ngForm" (ngSubmit)="addIngredient(ingredientForm.value); ingredientForm.reset()">
+    <mat-form-field><input matInput type="text" name="name" id="ingredientName" placeholder="Ingredient" ngModel>
+    </mat-form-field>
+    <mat-form-field><input matInput type="number" name="amount" id="amount" placeholder="Amount" ngModel>
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" name="measurement" id="measurement" placeholder="Measurement" ngModel>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Add ingredient</button>
+  </form>
+  <mat-list>
+    <mat-list-item *ngFor="let ingredient of ingredients">
+      {{ingredient.name}}, {{ingredient.amount}} {{ingredient.measurement}}
+      <button mat-icon-button (click)="removeIngredient(ingredient)"><mat-icon>cancel</mat-icon></button>
+    </mat-list-item>
+  </mat-list>
+  <!--lägga till taggar-->
+  <h4>Tags</h4>
+  <form #tagForm="ngForm" (ngSubmit)="addTag(tagForm.value); tagForm.reset()">
+    <mat-form-field>
+      <input matInput type="text" name="name" id="tag" placeholder="Tag" ngModel>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Add tag</button>
+  </form>
+  <mat-list>
+    <mat-list-item *ngFor="let tag of tags">
+      {{tag.name}}
+      <button mat-icon-button (click)="removeTag(tag)"><mat-icon>cancel</mat-icon></button>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-form-field>
+    <input type="text" name="picture" id="picture" placeholder="Enter image URL" matInput ngModel>
+  </mat-form-field>
+  <br>
+  <button mat-button type="submit">Post Recipe</button>
+  <p *ngIf="error">{{error}}</p>
+</form>
+<div *ngIf="!loggedIn">
+  You must log in to post recipes
+  <a href="/login" mat-button>Login</a>
+</div>

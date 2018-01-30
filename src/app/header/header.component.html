@@ -1,0 +1,17 @@
+<header>
+  <h1>IRDb</h1>
+  <mat-toolbar>
+    <a mat-icon-button href="/start">
+      <mat-icon>home</mat-icon>
+    </a>
+    <a mat-button href="/add">Add</a>
+    <a mat-button href="/login" class="login-button" *ngIf="!loggedIn">Login</a>
+    <mat-menu #userMenu="matMenu">
+      <a href="/start" mat-menu-item>Log out</a>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="userMenu" class="login-button" *ngIf="loggedIn" (click)="logOut()">
+      Logged in as {{username}}
+    </button>
+  </mat-toolbar>
+</header>
+
